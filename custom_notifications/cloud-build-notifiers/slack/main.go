@@ -106,13 +106,27 @@ func (s *slackNotifier) writeMessage(build *cbpb.Build) (*slack.WebhookMessage, 
 	}
 
 	atch := slack.Attachment{
-		Text:  txt,
-		Color: clr,
-		Actions: []slack.AttachmentAction{{
-			Text: "View Logs",
-			Type: "button",
-			URL:  logURL,
-		}},
+		AuthorName: "ahmed.shrbiny",
+		AuthorLink: "https://gitlab.com/ahmed.shrbiny",
+		Text: txt,
+		Color: clr,		
+		Actions: []slack.AttachmentAction{
+			slack.AttachmentAction { 	
+				Text: "View Logs",
+				Type: "button",
+				URL:  logURL,
+			}, 
+			slack.AttachmentAction {
+				Text: "View Logs +",
+				Type: "button",
+				URL:  logURL,
+			},
+			slack.AttachmentAction {
+				Text: "Additional btn",
+				Type: "button",
+				URL:  logURL,
+			},
+		},
 	}
 
 	return &slack.WebhookMessage{Attachments: []slack.Attachment{atch}}, nil

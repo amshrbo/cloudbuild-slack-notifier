@@ -24,13 +24,27 @@ func TestWriteMessage(t *testing.T) {
 
 	want := &slack.WebhookMessage{
 		Attachments: []slack.Attachment{{
+			AuthorName: "ahmed.shrbiny",
+			AuthorLink: "https://gitlab.com/ahmed.shrbiny",
 			Text:  "Build Status: SUCCESS,\nRepository: ,\nBranch: ,\nCommit: ",
 			Color: "good",
-			Actions: []slack.AttachmentAction{{
-				Text: "View Logs",
-				Type: "button",
-				URL:  "https://some.example.com/log/url?foo=bar&utm_campaign=google-cloud-build-notifiers&utm_medium=chat&utm_source=google-cloud-build",
-			}},
+			Actions: []slack.AttachmentAction{
+				slack.AttachmentAction { 	
+					Text: "View Logs",
+					Type: "button",
+					URL: "https://some.example.com/log/url?foo=bar&utm_campaign=google-cloud-build-notifiers&utm_medium=chat&utm_source=google-cloud-build",
+				}, 
+				slack.AttachmentAction {
+					Text: "View Logs +",
+					Type: "button",
+					URL:  "https://some.example.com/log/url?foo=bar&utm_campaign=google-cloud-build-notifiers&utm_medium=chat&utm_source=google-cloud-build",
+				},
+				slack.AttachmentAction {
+					Text: "Additional btn",
+					Type: "button",
+					URL:  "https://some.example.com/log/url?foo=bar&utm_campaign=google-cloud-build-notifiers&utm_medium=chat&utm_source=google-cloud-build",
+				},
+			},
 		}},
 	}
 
